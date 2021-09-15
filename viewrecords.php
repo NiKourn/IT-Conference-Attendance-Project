@@ -1,5 +1,5 @@
 <?php
-$title = 'View All Records | Attendance';
+$title = 'View All Records';
 require_once 'includes/header.php';
 require_once 'db/conn.php';
 
