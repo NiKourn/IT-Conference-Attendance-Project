@@ -1,6 +1,7 @@
 <?php
 $title = 'View All Records';
 require_once 'includes/header.php';
+require_once 'includes/auth_check.php';
 require_once 'db/conn.php';
 
 //Get all attendees
@@ -12,11 +13,8 @@ $results= $crud->getAttendees();
         <th>#</th>
         <th>First Name</th>
         <th>Last Name</th>
-        <th>Date of Birth</th>
-        <th>Contact</th>
-        <th>Email</th>
         <th>Specialty</th>
-        <th>Actions</th>
+       
         
     </tr>
 </thead>
@@ -28,9 +26,6 @@ $results= $crud->getAttendees();
         <td><?php echo $r['attendee_id'];?></td>
         <td><?php echo $r['firstname'];?></td>
         <td><?php echo $r['lastname'];?></td>
-        <td><?php echo $r['dateofbirth'];?></td>
-        <td><?php echo $r['contactnumber'];?></td>
-        <td><?php echo $r['emailaddress'];?></td>
         <td><?php echo $r['name'];?></td>
         <td>
             <a href="view.php?id=<?php echo $r['attendee_id'];?>" class="btn btn-primary">View</a>

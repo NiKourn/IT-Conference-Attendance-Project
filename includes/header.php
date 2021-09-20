@@ -30,7 +30,12 @@ include_once 'includes/session.php';
                     <a class="nav-link" href="viewrecords.php">View Records</a>
                   </div>
                   <div class="navbar-nav ml-auto">
-                    <a class="nav-link active" href="login.php">Login</a>
+                  <?php if(!isset($_SESSION['userid'])){  ?>
+                  <a class="nav-link active" href="login.php">Login</a><?php } else {?>
+      
+                  <a class="nav-link active" href="#"><span>Hello <?php echo $_SESSION['username']. ' - ' . $_SESSION['userid'];  ?></span></a>
+                  <a class="nav-link active" href="logout.php">Logout</a><?php } ?>
+                  
                   </div>
                 </div>
               </div>

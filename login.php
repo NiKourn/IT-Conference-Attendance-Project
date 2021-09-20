@@ -2,16 +2,18 @@
 $title = 'User Login';
 require_once 'includes/header.php';
 require_once 'db/conn.php';
+//If data was submitted via a form POST request, then
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $username = strtolower(trim($_POST['username']));
     $password = $_POST['password'];
+    //Hash Password
     $new_password = md5($password.$username);
     $result = $userlog->getUser($username, $new_password);
     if(!$result){
       echo 'Username or password is not correct. Please try again';
     }else{
       $_SESSION['username'] = $username;
-      $_SESSION['id'] = $result['id'];
+      $_SESSION['userid'] = $result['id'];
       header("Location: viewrecords.php");
     }
 }

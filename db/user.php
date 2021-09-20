@@ -23,7 +23,7 @@
                         $sql = "INSERT INTO users (username,password)VALUES(:username,:password)";
                         //prepare the sql statement for execution
                         $stmt = $this->db->prepare($sql);
-                        //bind all placeholders to the actual values, this is what is save in db
+                        //bind all placeholders to the actual values, this is what saves in db
                         $stmt->bindparam(':username',$username);
                         $stmt->bindparam(':password',$new_password);
                         

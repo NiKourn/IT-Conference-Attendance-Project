@@ -1,7 +1,7 @@
 <?php
 $title = 'View Record';
 require_once 'includes/header.php';
-
+require_once 'includes/auth_check.php';
 //database connection
 require_once 'db/conn.php';
 
