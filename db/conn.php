@@ -6,7 +6,7 @@
     //$pass='';
     //$charset= 'utf8mb4';
 
-    Remote connection
+    //Remote connection
     $host='sql4.freemysqlhosting.net';
     $db='sql4437373';
     $user='sql4437373';
