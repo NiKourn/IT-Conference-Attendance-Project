@@ -1,6 +1,6 @@
 <?php
 $title = 'Edit Record';
-require_once 'includes/header.php';
+require_once 'header.php';
 require_once 'includes/auth_check.php';
 require_once 'db/conn.php';
 
@@ -11,7 +11,7 @@ if(!isset($_GET['id'])){
     header("Location: viewrecords.php");
 }else{
     $id = $_GET['id'];
-$attendee = $crud->getAttendeeDetails($id);
+    $attendee = $crud->getAttendeeDetails($id);
 
 ?>
     
@@ -55,6 +55,6 @@ $attendee = $crud->getAttendeeDetails($id);
   <button type="submit" name="submit" class="btn btn-success">Save Changes</button>
 </form>
 <?php } // else close ?> 
-<?php require_once 'includes/footer.php'
+<?php require_once 'footer.php'
 ?>
    

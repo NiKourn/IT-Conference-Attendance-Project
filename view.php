@@ -1,6 +1,6 @@
 <?php
 $title = 'View Record';
-require_once 'includes/header.php';
+require_once 'header.php';
 require_once 'includes/auth_check.php';
 //database connection
 require_once 'db/conn.php';
@@ -14,7 +14,7 @@ if(!isset($_GET['id'])){
     $result = $crud->getAttendeeDetails($id);
 ?>
 
-
+<img src="<?php echo empty($result['avatar_path']) ? "uploads/8705987771530273516-512.png" : $result['avatar_path']; ?>" class="rounded-circle" style="width:20%; height:20%;"/>
 <div class="card" style="width: 18rem;">
     <div class="card-body">
         <h5 class="card-title">
@@ -61,5 +61,5 @@ if(!isset($_GET['id'])){
 
 
 
-<?php require_once 'includes/footer.php'
+<?php require_once 'footer.php'
 ?>

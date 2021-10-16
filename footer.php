@@ -1,9 +1,9 @@
-<div id="footer">
+<footer>
 <?php
 echo 'Copyright &copy' . date('Y');
 ?>
-
- </div> <!-- end copyrights -->
+</footer>
+  <!-- end copyrights -->
 </div> <!-- end .container -->
  <!-- Optional JavaScript; choose one of the two! -->
 

@@ -1,6 +1,6 @@
 <?php
     $title = 'Success';
-    require_once 'includes/header.php';
+    require_once 'header.php';
     require_once 'db/conn.php';
     require_once 'sendemail.php';
 
@@ -13,21 +13,31 @@
         $contact = $_POST ['contact'];
         $email = $_POST ['email'];
         $specialty = $_POST ['specialty'];
+        //
+        $orig_file = $_FILES["avatar"]["tmp_name"];
+        $ext = pathinfo($_FILES["avatar"]["name"], PATHINFO_EXTENSION);
+        $target_dir = 'uploads/';
+        //Path for the file. Avatar is the name of the input and name is the image attribute
+        $destination = $target_dir . $contact . '.' .$ext;
+        move_uploaded_file($orig_file,$destination);
+
+
         //Call function to insert and track if success or not
-        $isSuccess = $crud->insert($fname, $lname, $dob, $contact, $email, $specialty);
+        $isSuccess = $crud->insert($fname, $lname, $dob, $contact, $email, $specialty, $destination);
         $specialtyName = $crud->getSpecialtyById($specialty);
 
-        if ($isSuccess){
+        if ($isSuccess)
+        {
             //calling static class that way
             SendEmail::SendMail($email, 'Welcome to IT Conference 2021', 'You have succesfully registered for this year\'s IT conference');
             include 'includes/successmsg.php';
-
-
-        }else{
-            include 'includes/errormsg.php';
-            
-
         }
+            else
+                {
+                
+                include 'includes/errormsg.php';
+            
+                }           
     }
 ?>
 <!-- Prints out values that where passed to the action page using GET method
@@ -57,7 +67,7 @@
         <a href="#" class="card-link">Another link</a>
     </div>
 </div>-->
-
+<img src="<?php echo $destination ?>" class="rounded-circle" style="width:20%; height:20%;"/>
 <div class="card" style="width: 18rem;">
     <div class="card-body">
         <h5 class="card-title">
@@ -87,5 +97,5 @@
 </div>
 
 
-<?php require_once 'includes/footer.php'
+<?php require_once 'footer.php'
 ?>

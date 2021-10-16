@@ -1,6 +1,6 @@
 <?php
 $title = 'User Login';
-require_once 'includes/header.php';
+require_once 'header.php';
 require_once 'db/conn.php';
 //If data was submitted via a form POST request, then
 if($_SERVER['REQUEST_METHOD'] == 'POST'){

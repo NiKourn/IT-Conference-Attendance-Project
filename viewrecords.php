@@ -1,6 +1,6 @@
 <?php
 $title = 'View All Records';
-require_once 'includes/header.php';
+require_once 'header.php';
 require_once 'includes/auth_check.php';
 require_once 'db/conn.php';
 
@@ -41,5 +41,5 @@ $results= $crud->getAttendees();
 </tbody>
 
 </table>
-<?php require_once 'includes/footer.php'
+<?php require_once 'footer.php'
 ?>

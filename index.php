@@ -1,6 +1,6 @@
 <?php
 $title = 'Index';
-require_once 'includes/header.php';
+require_once 'header.php';
 require_once 'db/conn.php';
 
 
@@ -9,7 +9,7 @@ $results = $crud->getSpecialties();
     
     <h1 class="text-center">Registration for IT Conference</h1>
 
-    <form method="post" action="success.php">
+    <form method="post" action="success.php" enctype="multipart/form-data">
     <div class="mb-3">
     <label for="firstname" class="form-label">First Name</label>
     <input required type="text" class="form-control" id="firstname" name="firstname">
@@ -41,9 +41,14 @@ $results = $crud->getSpecialties();
     <input type="text" class="form-control" id="contact" name="contact" aria-describedby="phoneHelp">
     <div id="phoneHelp" class="form-text">We'll never share your phone number with anyone else.</div>
   </div>
+  <div class="custom-file">
+    <input type="file" accept="image/*" class="custom-file-input" id="avatar" name="avatar" >
+    <label class="custom-file-label" for="avatar">Choose File</label>
+    <small id="avatar" class="form-text text-danger">File Upload is Optional</small>
+  </div><br>
   <button type="submit" name="submit" class="btn btn-primary">Submit</button>
 </form>
 
-<?php require_once 'includes/footer.php'
+<?php require_once 'footer.php'
 ?>
    

@@ -10,11 +10,11 @@
             $this->db = $conn;
 
         }
-        //function to insert a new record into the attendee database
-        public function insert($fname, $lname, $dob, $contact, $email, $specialty){
+        //function to insert a new record into the attendee database based in position here!
+        public function insert($fname, $lname, $dob, $contact, $email, $specialty, $destination){
             try {
                 //define sql statement to be executed
-                $sql = "INSERT INTO attendee (firstname,lastname,dateofbirth,contactnumber,emailaddress,specialty_id)VALUES(:fname,:lname,:dob,:contact,:email,:specialty)";
+                $sql = "INSERT INTO attendee (firstname,lastname,dateofbirth,contactnumber,emailaddress,specialty_id,avatar_path)VALUES(:fname,:lname,:dob,:contact,:email,:specialty,:avatar_path)";
                 //prepare the sql statement for execution
                 $stmt = $this->db->prepare($sql);
                 //bind all placeholders to the actual values
@@ -24,6 +24,7 @@
                 $stmt->bindparam(':contact',$contact);
                 $stmt->bindparam(':email',$email);
                 $stmt->bindparam(':specialty',$specialty);
+                $stmt->bindparam(':avatar_path',$destination);
                 //execute statement
                 $stmt->execute();
                 return true;
@@ -59,7 +60,7 @@
                     $stmt->bindparam(':id', $id);
                     $stmt->execute();
                     $result = $stmt->fetch();
-                return $result;
+                    return $result;
                 }
                 catch (PDOException $e){
                     echo $e->getMessage();

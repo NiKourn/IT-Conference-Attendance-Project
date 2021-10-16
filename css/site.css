@@ -1,0 +1,14 @@
+html{
+
+    
+}
+footer{
+background-color:blueviolet;
+display: flex;
+align-content: flex-start;
+flex-wrap: nowrap;
+justify-content: center;
+height: 50px;
+margin-top: 75px;
+border-radius: 5px 5px 0px 0px;
+}
