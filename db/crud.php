@@ -47,24 +47,24 @@
                     echo $e->getMessage();
                 return false;
                 }
-               
-               
-                
 
             }
             
-            public function getAttendeeDetails($id){
+            public function getAttendeeDetails($id) {
                 try{
                     $sql = "SELECT * FROM attendee a inner join specialties s on a.specialty_id = s.specialty_id where attendee_id = :id";
                     $stmt = $this->db->prepare($sql);
                     $stmt->bindparam(':id', $id);
                     $stmt->execute();
                     $result = $stmt->fetch();
-                    return $result;
+                    return $result; 
+                   //return true;
                 }
-                catch (PDOException $e){
-                    echo $e->getMessage();
-                return false;
+                catch (Exception $e){
+                  echo $e->getMessage();
+                   return false;
+                  
+                   
                 }
                 
 
@@ -98,9 +98,9 @@
                 
             
             
-            public function editAttendee($id, $fname, $lname, $dob, $contact, $email, $specialty){
+            public function editAttendee($id, $fname, $lname, $dob, $contact, $email, $specialty, $destination){
                 try{
-                $sql = "UPDATE `attendee` SET `firstname`=:fname,`lastname`=:lname,`dateofbirth`=:dob,`contactnumber`=:contact,`emailaddress`=:email,`specialty_id`=:specialty WHERE attendee_id =:id";
+                $sql = "UPDATE `attendee` SET `firstname`=:fname,`lastname`=:lname,`dateofbirth`=:dob,`contactnumber`=:contact,`emailaddress`=:email,`specialty_id`=:specialty,`avatar_path`=:avatar_path WHERE attendee_id =:id";
                 $stmt = $this->db->prepare($sql);
                 //bind all placeholders to the actual values
                 $stmt->bindparam(':id',$id);
@@ -110,6 +110,7 @@
                 $stmt->bindparam(':contact',$contact);
                 $stmt->bindparam(':email',$email);
                 $stmt->bindparam(':specialty',$specialty);
+                $stmt->bindparam(':avatar_path',$destination);
                 //execute statement
                 $stmt->execute();
                 return true;
@@ -134,5 +135,7 @@
                 }
 
             }
-    }
+    
+
+        }//crud end
 ?>

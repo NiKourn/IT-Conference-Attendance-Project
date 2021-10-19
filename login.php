@@ -23,7 +23,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
 <!--Reload this page and do the posting action on this page  
 htmlentities can strip down the exploitation by hackers -->
-<form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post">
+<form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post" enctype="multipart/form-data">
   <div class="mb-3">
     <label for="username" class="form-label">Username: *</label>
     <input type="text" name="username" class="form-control" id="username" aria-describedby="emailHelp" value="<?php if($_SERVER['REQUEST_METHOD'] == 'POST') echo $_POST['username']; ?>">
@@ -36,5 +36,5 @@ htmlentities can strip down the exploitation by hackers -->
   
   <button type="submit" class="btn btn-primary" value="login">Login</button>
   <br/>
-  <a href="#">Forgot Password?</a>
+  
 </form>

@@ -1,9 +1,4 @@
-html{
-
-    
-}
 footer{
-background-color:blueviolet;
 display: flex;
 align-content: flex-start;
 flex-wrap: nowrap;

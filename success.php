@@ -2,7 +2,6 @@
     $title = 'Success';
     require_once 'header.php';
     require_once 'db/conn.php';
-    require_once 'sendemail.php';
 
 
     if(isset($_POST['submit'])){
@@ -29,7 +28,7 @@
         if ($isSuccess)
         {
             //calling static class that way
-            SendEmail::SendMail($email, 'Welcome to IT Conference 2021', 'You have succesfully registered for this year\'s IT conference');
+           // SendEmail::SendMail($email, 'Welcome to IT Conference 2021', 'You have succesfully registered for this year\'s IT conference');
             include 'includes/successmsg.php';
         }
             else
@@ -67,6 +66,7 @@
         <a href="#" class="card-link">Another link</a>
     </div>
 </div>-->
+
 <img src="<?php echo $destination ?>" class="rounded-circle" style="width:20%; height:20%;"/>
 <div class="card" style="width: 18rem;">
     <div class="card-body">

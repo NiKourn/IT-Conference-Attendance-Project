@@ -1,54 +1,58 @@
 <?php
-$title = 'Index';
+$title = 'Install App Database';
+
 require_once 'header.php';
-require_once 'db/conn.php';
 
+if($_SERVER['REQUEST_METHOD'] == 'POST'){
+$host = $_POST['host'];
+$db = 'attendance';
+$username = $_POST['username'];
+$password = $_POST['password'];
+$charset= 'utf8mb4';
+require_once 'db/installdbconn.php';
 
-$results = $crud->getSpecialties();
-?>
-    
-    <h1 class="text-center">Registration for IT Conference</h1>
+$dbconn = new dbconn();
+$dbconn->createDB($host,$username,$password);
+$dbconn->createTables($host,$db,$username,$password);
+$dbconn->storeJsonInfo();
+}
 
-    <form method="post" action="success.php" enctype="multipart/form-data">
-    <div class="mb-3">
-    <label for="firstname" class="form-label">First Name</label>
-    <input required type="text" class="form-control" id="firstname" name="firstname">
-  </div>
-  <div class="mb-3">
-    <label for="lastname" class="form-label">Last Name</label>
-    <input required type="text" class="form-control" id="lastname" name="lastname">
-  </div>
-  <div class="mb-3">
-    <label for="dob" class="form-label">Date of Birth</label>
-    <input type="text" class="form-control" id="dob" name="dob">
-  </div>
-  <div class="mb-3">
-    <label for="specialty" class="form-label">Specialty/Area of Expertise</label>
-    <select class="form-control" id="specialty" name="specialty">
-      <?php 
-              while ($r = $results->fetch(PDO::FETCH_ASSOC)){ ?>
-              <option value="<?php echo $r['specialty_id'];?>"><?php echo $r['name'];?></option>
-     <?php } ?>
-    </select>
-      </div>
-  <div class="mb-3">
-    <label for="email" class="form-label">Email address</label>
-    <input required type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp">
-    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-  </div>
-  <div class="mb-3">
-    <label for="contact" class="form-label">Contact Number</label>
-    <input type="text" class="form-control" id="contact" name="contact" aria-describedby="phoneHelp">
-    <div id="phoneHelp" class="form-text">We'll never share your phone number with anyone else.</div>
-  </div>
-  <div class="custom-file">
-    <input type="file" accept="image/*" class="custom-file-input" id="avatar" name="avatar" >
-    <label class="custom-file-label" for="avatar">Choose File</label>
-    <small id="avatar" class="form-text text-danger">File Upload is Optional</small>
-  </div><br>
-  <button type="submit" name="submit" class="btn btn-primary">Submit</button>
-</form>
+$str = file_get_contents('data.json');
+$json = json_decode($str, true); // decode the JSON into an associative array
 
-<?php require_once 'footer.php'
-?>
+if (!empty($json)){
+  $servername = $json['host'];
+  $dbnamegiven ="attendance";
+  $username = $json['username'];
+  $password = $json['password'];
+  //make connection and access db to check if there's already a database created with given name from $dbname
+    // $db = new mysqli($json['host'],$json['username'],$json['password']);
+  try {$db = new PDO("mysql:host=$servername;", $username, $password);
+  $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+   $dbname = $dbnamegiven;
+   $query="SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME=?";
+   $stmt = $db->prepare($query);
+   $stmt->bindparam(1, $dbname);
+   $stmt->execute(); 
+  //$stmt->bind_result($data);
+  
+   if ($stmt->fetch()){
+    echo '<br><h2>Database Created</h2>';
+      Header("Refresh:1;url=homepage.php"); 
+   }
+ else {
+    include 'includes/database-form.php';
+   }
+
+}//end try
+   catch(PDOException $e){
+    include 'includes/database-form.php';
+    $e->getMessage();
+   }
    
+}//end if $json not empty
+else {
+  include 'includes/database-form.php';
+}  
+ $stmt= null;
+?>

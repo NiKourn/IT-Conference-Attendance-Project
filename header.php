@@ -28,7 +28,7 @@ include_once 'includes/session.php';
                 </button> 
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                   <div class="navbar-nav mr-auto">
-                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="index.php">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="homepage.php">Home</a></li>
                     <li class="nav-item"> <a class="nav-link" href="viewrecords.php">View Records</a></li>
                     <!--<li class="nav-item"> <a class="nav-link" href="admin-pane/main.php">Edit Site</a></li> 
                     <li class="nav-item dropdown">
@@ -42,7 +42,7 @@ include_once 'includes/session.php';
                             </ul>
                       </li>-->
                   </div>
-                  <div class="navbar-nav ml-auto">
+                  <div class="navbar-nav float-end">
                     <?php if(!isset($_SESSION['userid'])){  ?>
                       <li class="nav-item"><a class="nav-link" href="login.php">Login</a></li><?php } else {?>
                       <li class="nav-item"><a class="nav-link" href="#"><span>Hello <?php echo $_SESSION['username']. ' - ' . $_SESSION['userid'];  ?></span></a></li>
