@@ -1,11 +1,11 @@
 <h1 class="text-center">Edit Record</h1>
     <form method="post" action="editpost.php" enctype="multipart/form-data">
         <input type="hidden" name= "attendee_id" value="<?php echo $attendee['attendee_id']; ?>" />
-<img src="<?php echo empty($attendee['avatar_path']) ? "uploads/8705987771530273516-512.png" : $attendee['avatar_path']; ?>" class="rounded-circle" style="width:20%; height:20%;"/>
+<img src="<?php echo empty($attendee['avatar_path']) ? "uploads/no-image.png" : $attendee['avatar_path']; ?>" class="rounded-circle" style="width:20%; height:20%;"/>
 <div class="custom-file">
-  <label class="custom-file-label" for="avatar1">Insert your avatar</label><br>
-    <input type="file" accept="image/*" class="custom-file-input" id="avatar" name="avatar1" >
-    <small id="avatar1" class="form-text text-danger">File Upload is Optional</small>
+  <label class="custom-file-label" for="avatar">Insert your avatar</label><br>
+    <input type="file" accept="image/*" class="custom-file-input" id="avatar" name="avatar" >
+    <small id="avatar" class="form-text text-danger">File Upload is Optional</small>
   </div><br>
     <div class="mb-3">
     <label for="firstname" class="form-label">First Name</label>

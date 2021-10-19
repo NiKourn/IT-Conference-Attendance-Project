@@ -14,8 +14,8 @@
         $email = $_POST ['email'];
         $specialty = $_POST ['specialty'];
 
-        $orig_file = $_FILES["avatar1"]["tmp_name"];
-        $ext = pathinfo($_FILES["avatar1"]["name"], PATHINFO_EXTENSION);
+        $orig_file = $_FILES["avatar"]["tmp_name"];
+        $ext = pathinfo($_FILES["avatar"]["name"], PATHINFO_EXTENSION);
         $target_dir = 'uploads/';
         //Path for the file. Avatar is the name of the input and name is the image attribute
         $destination = $target_dir . $contact . '.' .$ext;

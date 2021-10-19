@@ -12,13 +12,15 @@
         $contact = $_POST ['contact'];
         $email = $_POST ['email'];
         $specialty = $_POST ['specialty'];
-        //
+        $imgbutt = $_FILES["avatar"];
+        //img rename and upload from tmp
         $orig_file = $_FILES["avatar"]["tmp_name"];
         $ext = pathinfo($_FILES["avatar"]["name"], PATHINFO_EXTENSION);
         $target_dir = 'uploads/';
         //Path for the file. Avatar is the name of the input and name is the image attribute
         $destination = $target_dir . $contact . '.' .$ext;
         move_uploaded_file($orig_file,$destination);
+        
 
 
         //Call function to insert and track if success or not
@@ -38,36 +40,13 @@
             
                 }           
     }
-?>
-<!-- Prints out values that where passed to the action page using GET method
-    
-<div class="card" style="width: 18rem;">
-    <div class="card-body">
-        <h5 class="card-title">
-            <?php //echo $_GET['lastname'] . ' ' . $_GET['firstname'];?>
-        </h5>
-
-        <h6 class="card-subtitle mb-2 text-muted">
-            <?php //echo $_GET['specialty'];?>
-        </h6>
-        
-        <p class="card-text">
-            Date of Birth: <?php //echo $_GET['dob']; ?>
-        </p>
-
-        <p class="card-text">
-            Email: <?php //echo $_GET['email']; ?>
-        </p>
-
-        <p class="card-text">
-            Phone Number: <?php //echo $_GET['phone']; ?>
-        </p>
-        <a href="#" class="card-link">Card link</a>
-        <a href="#" class="card-link">Another link</a>
-    </div>
-</div>-->
-
-<img src="<?php echo $destination ?>" class="rounded-circle" style="width:20%; height:20%;"/>
+//fixes the if statement to show no image if there's nothing on picture upload
+if (empty($ext)){
+            $destination = NULL;
+        }
+        ?>
+<!-- Prints out values that where passed to the action page using GET method-->
+<img src="<?php echo empty($destination) ? "uploads/no-image.png" : $destination; ?>" class="rounded-circle" style="width:20%; height:20%;"/>
 <div class="card" style="width: 18rem;">
     <div class="card-body">
         <h5 class="card-title">
